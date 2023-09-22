@@ -1,8 +1,8 @@
 /**
   **********************************************************************************************************************
-  * @file    webserver_wifi.h
+  * @file    webserver_status.h
   * @author  MCD Application Team
-  * @brief   Header for webserver_wifi.c module
+  * @brief   Header for webserver_status.c module
   **********************************************************************************************************************
   * @attention
   *
@@ -17,31 +17,38 @@
   */
 
 /* Define to prevent recursive inclusion -----------------------------------------------------------------------------*/
-#ifndef WEBSERVER_WIF_H
-#define WEBSERVER_WIF_H
+#ifndef NET_STATUS_H
+#define NET_STATUS_H
 
 /* Includes ----------------------------------------------------------------------------------------------------------*/
-#include "webserver.h"
+#include "stm32u5xx_hal.h"
+#include "b_u585i_iot02a.h"
+
 
 /* Exported types ----------------------------------------------------------------------------------------------------*/
-/* Exported constants ------------------------------------------------------------------------------------------------*/
-#define MXCHIP_SPI              Wifi_SPIHandle
-#define MXCHIP_FLOW_Pin         GPIO_PIN_15
-#define MXCHIP_FLOW_GPIO_Port   GPIOG
-#define MXCHIP_FLOW_EXTI_IRQn   EXTI15_IRQn
-#define MXCHIP_RESET_Pin        GPIO_PIN_15
-#define MXCHIP_RESET_GPIO_Port  GPIOF
-#define MXCHIP_NSS_Pin          GPIO_PIN_12
-#define MXCHIP_NSS_GPIO_Port    GPIOB
-#define MXCHIP_NOTIFY_Pin       GPIO_PIN_14
-#define MXCHIP_NOTIFY_GPIO_Port GPIOD
-#define MXCHIP_NOTIFY_EXTI_IRQn EXTI14_IRQn
+/**
+  * @brief  HAL Status structures definition
+  */
+typedef enum
+{
+  WEBSERVER_OK  = 0,
+  UNKOWN_ERROR  = -1,
+  SYSTEM_ERROR  = -2,
+  CONSOLE_ERROR = -3,
+  SENSOR_ERROR  = -4,
+  PERIPH_ERROR  = -5,
+  WIFI_ERROR    = -6,
+  HTTP_ERROR    = -7,
+  SOCKET_ERROR  = -8,
 
+} WebServer_StatusTypeDef;
+
+/* Exported constants ------------------------------------------------------------------------------------------------*/
 /* Exported macro ----------------------------------------------------------------------------------------------------*/
 /* Exported functions ----------------------------------------------------------------------------------------------- */
-WebServer_StatusTypeDef webserver_wifi_init(void);
-WebServer_StatusTypeDef webserver_wifi_connect(void);
+void webserver_process_error(void);
 
 /* Private defines ---------------------------------------------------------------------------------------------------*/
 
-#endif /* WEBSERVER_WIF_H */
+
+#endif /* WEBSERVER_STATUS_H */

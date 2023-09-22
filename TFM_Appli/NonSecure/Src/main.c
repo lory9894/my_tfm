@@ -261,7 +261,6 @@ void SystemClock_Config(void)
 void FW_APP_PrintMainMenu(void)
 {
   printf("\r\n=================== Main Menu ============================\r\n\n");
-  printf("  Build di ns_appli e secure application\r\n\n");
   printf("  Test Protections -------------------------------------- 1\r\n\n");
   printf("  Test TFM ---------------------------------------------- 2\r\n\n");
 #if   !defined(MCUBOOT_PRIMARY_ONLY)
